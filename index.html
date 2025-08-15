@@ -3,183 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richh Nick - Official Website</title>
+    <title>Richh Nick - Official Digital HQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gold: #C9A24E;
+            --black: #000000;
+            --white: #FFFFFF;
+            --dark-gray: #111111;
+        }
         body {
             margin: 0;
-            font-family: sans-serif;
-            color: white;
-            background-color: black;
+            font-family: 'Roboto', sans-serif;
+            color: var(--white);
+            background-color: var(--black);
+            overflow-x: hidden;
         }
-        header {
-            background-color: #d4af37; /* Deep gold */
-            color: black;
-            text-align: center;
-            padding: 10px;
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--gold);
         }
         .hero {
-            background-image: url('https://example.com/performing-image.jpg'); /* Placeholder for performing image/video */
-            background-size: cover;
-            height: 80vh;
+            height: 100vh;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            overflow: hidden;
+        }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
         }
         .hero h1 {
-            font-family: 'Oswald', sans-serif; /* Bold block font */
-            font-size: 3em;
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            margin: 0;
+            color: var(--gold);
+            animation: fadeIn 2s ease-out;
         }
-        .cta-buttons button {
-            background-color: #d4af37;
+        .hero p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1rem 2rem;
             border: none;
-            padding: 10px 20px;
-            margin: 10px;
+            font-weight: bold;
             cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--white);
+            color: var(--black);
         }
         section {
-            padding: 40px;
-            text-align: center;
-        }
-        .about, .events, .artists, .merch, .contact {
-            background-color: #111;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         h2 {
             font-family: 'Oswald', sans-serif;
-            color: #d4af37;
+            color: var(--gold);
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        .music-media iframe {
-            margin: 20px;
-        }
-        .artists div {
-            display: inline-block;
-            margin: 20px;
-        }
-        .members-only, .blog {
-            background-color: #222;
-        }
-        footer {
-            background-color: #d4af37;
-            color: black;
-            padding: 10px;
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
             text-align: center;
         }
+        .music-media {
+            background: var(--dark-gray);
+        }
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .events {
+            background: var(--black);
+        }
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .event {
+            background: var(--dark-gray);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .artists {
+            background: var(--dark-gray);
+        }
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .artist {
+            text-align: center;
+        }
+        .artist img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        .merch {
+            background: var(--black);
+        }
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .merch-item {
+            text-align: center;
+        }
+        .merch-item img {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact input, .contact select, .contact textarea {
+            padding: 1rem;
+            background: var(--dark-gray);
+            border: none;
+            color: var(--white);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links a {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        .members-only {
+            background: var(--dark-gray);
+            text-align: center;
+        }
+        .blog {
+            background: var(--black);
+        }
+        .blog-article {
+            margin-bottom: 2rem;
+        }
+        .email-list {
+            background: var(--dark-gray);
+            text-align: center;
+        }
+        .email-list form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .email-list input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--black);
+            border: none;
+            color: var(--white);
+        }
+        footer {
+            background: var(--black);
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid var(--gold);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            nav ul { flex-direction: column; gap: 1rem; }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Where Hustle Meets Legacy</h1>
-    </header>
+    <nav>
+        <div class="logo">Richh Nick</div>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#artists">Artists</a></li>
+            <li><a href="#merch">Merch</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#members">Members</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+    </nav>
 
-    <section class="hero">
+    <section id="hero" class="hero">
+        <!-- Replace with actual performance video URL -->
+        <video autoplay muted loop>
+            <source src="https://example.com/performance-video.mp4" type="video/mp4">
+        </video>
         <h1>Richh Nick — Artist, Mogul, Visionary</h1>
+        <p>Where Hustle Meets Legacy</p>
         <div class="cta-buttons">
-            <button>Listen Now</button>
-            <button>Book Me</button>
-            <button>Join the Movement</button>
+            <button class="btn" onclick="scrollToSection('#music')">Listen Now</button>
+            <button class="btn" onclick="scrollToSection('#contact')">Book Me</button>
+            <button class="btn" onclick="scrollToSection('#members')">Join the Movement</button>
         </div>
     </section>
 
-    <section class="about">
+    <section id="about" class="about parallax" style="background-image: url('https://example.com/about-bg.jpg');">
         <h2>About Richh Nick</h2>
-        <p>From the streets to the boardroom, Richh Nick has built an empire through grit and vision. Hosting at SXSW, major collaborations, headlining big shows, and leading Authentic Empire Music Group as an executive. Inspiring the next generation of hustlers.</p>
+        <p>From the streets to the boardroom, Richh Nick embodies grit, vision, and unstoppable hustle. As an artist, executive at Authentic Empire Music Group, and partner in the label, he's hosted at SXSW, landed major collaborations, headlined massive shows, and built a legacy inspiring the next wave of creators. Partnering with Authentic Empire (@authenticempiremg), Richh Nick is pushing boundaries in music, events, and beyond.</p>
     </section>
 
-    <section class="music-media">
+    <section id="music" class="music-media">
         <h2>Music & Media</h2>
-        <!-- Spotify Embed (placeholder for Richh Nick or Authentic Empire) -->
-        <iframe src="https://open.spotify.com/embed/artist/46njn5hYypZnu8qxe0LXjs" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        <!-- YouTube Video Embed -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/sJe7NZ67v3Y" title="RichNick Performance" frameborder="0" allowfullscreen></iframe>
-        <p>Behind-the-scenes: Check out studio sessions and exclusive drops on our socials.</p>
+        <div class="media-grid">
+            <iframe src="https://open.spotify.com/embed/artist/46njn5hYypZnu8qxe0LXjs" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJe7NZ67v3Y" title="Richh Nick Performance" frameborder="0" allowfullscreen></iframe>
+            <p>Behind-the-scenes studio sessions, rehearsals, and exclusive drops available in Members Only.</p>
+        </div>
     </section>
 
-    <section class="events">
-        <h2>Events</h2>
-        <p>Upcoming: August 30, 2025 - Club Dreams, Atlanta, GA. More announcements coming!</p>
-        <button>Buy Tickets</button>
-        <form>
-            <label for="rsvp">RSVP:</label>
-            <input type="email" id="rsvp" placeholder="Your Email">
-            <button type="submit">Submit</button>
-        </form>
+    <section id="events" class="events parallax" style="background-image: url('https://example.com/events-bg.jpg');">
+        <h2>Upcoming Events</h2>
+        <div class="event-list">
+            <div class="event">
+                <h3>Yacht Party - Tampa, FL</h3>
+                <p>Date: September 2025 | RSVP for exclusive access.</p>
+                <button class="btn">RSVP</button>
+            </div>
+            <div class="event">
+                <h3>Authentic Empire Showcase - Atlanta, GA</h3>
+                <p>Date: October 2025 | Tickets available soon.</p>
+                <button class="btn">Buy Tickets</button>
+            </div>
+            <!-- Add more based on real events -->
+        </div>
     </section>
 
-    <section class="artists">
+    <section id="artists" class="artists">
         <h2>Artist Management</h2>
-        <div>
-            <h3>Pat X (Padd X)</h3>
-            <p>Up-and-coming talent under Authentic Empire.</p>
+        <p>Showcasing talent under Authentic Empire: Partners in building empires.</p>
+        <div class="artist-grid">
+            <div class="artist">
+                <img src="https://example.com/paddx.jpg" alt="Padd X">
+                <h3>Padd X</h3>
+                <p>Up-and-coming star with raw energy.</p>
+            </div>
+            <div class="artist">
+                <img src="https://example.com/100kloo.jpg" alt="100K Loo">
+                <h3>100K Loo</h3>
+                <p>Project management deal, follow @100k_lurk.</p>
+            </div>
+            <div class="artist">
+                <img src="https://example.com/boldboy.jpg" alt="BoldBoy">
+                <h3>BoldBoy</h3>
+                <p>Hottest new artist from Arkansas, @dge_boldboy.</p>
+            </div>
+            <!-- Add more from Authentic Empire roster: King Fatt, etc. -->
         </div>
-        <div>
-            <h3>100K Loo (100K Lurk)</h3>
-            <p>Project management deal with Authentic Empire. Follow @100k_lurk</p>
-        </div>
-        <div>
-            <h3>BoldBoy</h3>
-            <p>Hottest new artist from Arkansas. Follow @dge_boldboy</p>
-        </div>
-        <form>
+        <form id="talent-submission">
             <h3>Talent Submission</h3>
-            <input type="text" placeholder="Your Name">
-            <input type="email" placeholder="Email">
-            <input type="url" placeholder="Demo Link">
-            <button type="submit">Submit</button>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="url" placeholder="Demo Link" required>
+            <button type="submit" class="btn">Submit</button>
         </form>
     </section>
 
-    <section class="merch">
+    <section id="merch" class="merch parallax" style="background-image: url('https://example.com/merch-bg.jpg');">
         <h2>Merch & Drops</h2>
-        <p>Shop exclusive merch powered by Shopify.</p>
-        <a href="https://example.com/shopify-store">Shop Now</a>
-        <p>Exclusive drops for members.</p>
+        <p>Exclusive merch powered by Shopify. Members get early access.</p>
+        <div class="merch-grid">
+            <div class="merch-item">
+                <img src="https://example.com/tee.jpg" alt="Richh Nick Tee">
+                <h3>Signature Tee</h3>
+                <p>$30</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="merch-item">
+                <img src="https://example.com/hoodie.jpg" alt="Hoodie">
+                <h3>Hustle Hoodie</h3>
+                <p>$50</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <!-- Add more -->
+        </div>
     </section>
 
-    <section class="contact">
+    <section id="contact" class="contact">
         <h2>Contact / Booking</h2>
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <select>
+        <form id="booking-form">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <select required>
+                <option value="">Select Type</option>
                 <option>Show Booking</option>
                 <option>Feature</option>
                 <option>Speaking</option>
                 <option>Hosting</option>
             </select>
-            <textarea placeholder="Message"></textarea>
-            <button type="submit">Send</button>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit" class="btn">Send</button>
         </form>
         <p>Management: richhnick3@gmail.com</p>
-        <p>Socials: <a href="https://www.instagram.com/richhnick/">Instagram</a> | <a href="https://www.facebook.com/nick.burks.3/">Facebook</a> | <a href="https://www.youtube.com/@richhnick">YouTube</a></p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/richhnick/" target="_blank">Instagram @richhnick</a>
+            <a href="https://www.instagram.com/richhtalk/" target="_blank">Instagram @richhtalk</a>
+            <a href="https://www.instagram.com/authenticempiremg/" target="_blank">Instagram @authenticempiremg</a>
+            <a href="https://www.facebook.com/nick.burks.3/" target="_blank">Facebook</a>
+            <a href="https://x.com/RichhNick" target="_blank">X @RichhNick</a>
+            <a href="https://www.youtube.com/@richhnick" target="_blank">YouTube</a>
+        </div>
     </section>
 
-    <section class="members-only">
+    <section id="members" class="members-only">
         <h2>Members Only</h2>
-        <p>Exclusive unreleased music, early tickets, private livestreams. Join now!</p>
-        <button>Sign Up</button>
+        <p>Unlock exclusive unreleased music, early tickets, private livestreams, and more.</p>
+        <button class="btn" onclick="alert('Sign up coming soon!')">Sign Up</button>
     </section>
 
-    <section class="blog">
+    <section id="blog" class="blog">
         <h2>News / Blog</h2>
-        <article>
-            <h3>Grind Tips: How to Build Your Empire</h3>
-            <p>Share updates, tips, and industry gems.</p>
+        <article class="blog-article">
+            <h3>Empire Rising: New Drops from Authentic Empire</h3>
+            <p>Updates on latest releases, grind tips, and industry insights from Richh Nick.</p>
+        </article>
+        <article class="blog-article">
+            <h3>How to Build Your Legacy in Music</h3>
+            <p>Motivational advice from the mogul himself.</p>
         </article>
     </section>
 
-    <section class="email-list">
+    <section id="email" class="email-list">
         <h2>Join Our Email/SMS List</h2>
-        <form>
-            <input type="email" placeholder="Email">
+        <p>Stay updated on drops, events, and exclusive moves.</p>
+        <form id="subscribe-form">
+            <input type="email" placeholder="Email" required>
             <input type="tel" placeholder="Phone for SMS">
-            <button type="submit">Subscribe</button>
+            <button type="submit" class="btn">Subscribe</button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2025 Richh Nick. All Rights Reserved.</p>
+        <p>&copy; 2025 Richh Nick & Authentic Empire. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        function scrollToSection(id) {
+            document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                alert('Form submitted! (Demo)');
+            });
+        });
+    </script>
 </body>
 </html>
