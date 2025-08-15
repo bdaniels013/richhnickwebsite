@@ -3,80 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richh Nick - Digital HQ 2030</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Richh Nick - Official HQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --gold: #FFD700;
-            --neon-gold: #FFE100;
+            --gold: #d4af37;
             --black: #000000;
-            --white: #FFFFFF;
-            --dark-gray: #0A0A0A;
-            --glow: 0 0 10px var(--neon-gold), 0 0 20px var(--neon-gold);
+            --white: #ffffff;
+            --dark-bg: #0a0a0a;
+            --gradient: linear-gradient(135deg, #d4af37, #b8860b);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             color: var(--white);
-            background: radial-gradient(circle at center, var(--dark-gray) 0%, var(--black) 100%);
+            background: var(--dark-bg);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
-            backdrop-filter: blur(20px) saturate(180%);
-            z-index: 1000;
-            padding: 1rem 3rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            transition: background 0.3s;
         }
-        nav .logo {
-            font-family: 'Orbitron', sans-serif;
+        nav.scrolled {
+            background: rgba(0,0,0,0.9);
+        }
+        .logo {
+            font-family: 'Oswald', sans-serif;
             font-size: 2rem;
-            color: var(--neon-gold);
-            text-shadow: var(--glow);
-            cursor: pointer;
+            color: var(--gold);
+            letter-spacing: 2px;
         }
         nav ul {
-            list-style: none;
             display: flex;
+            list-style: none;
             gap: 2rem;
-            margin: 0;
         }
         nav a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 500;
             position: relative;
             transition: color 0.3s;
         }
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
             left: 0;
+            bottom: -5px;
             width: 0;
             height: 2px;
-            background: var(--neon-gold);
+            background: var(--gold);
             transition: width 0.3s;
         }
         nav a:hover {
-            color: var(--neon-gold);
-            text-shadow: var(--glow);
+            color: var(--gold);
         }
         nav a:hover::after {
             width: 100%;
         }
         .hamburger {
             display: none;
+            cursor: pointer;
             flex-direction: column;
             gap: 5px;
-            cursor: pointer;
         }
         .hamburger span {
             width: 25px;
@@ -88,12 +91,10 @@
             height: 100vh;
             position: relative;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             overflow: hidden;
-            background: url('https://example.com/futuristic-bg.jpg') center/cover no-repeat;
         }
         .hero video {
             position: absolute;
@@ -102,263 +103,114 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6);
-            z-index: -2;
+            filter: brightness(0.5);
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
-            z-index: -1;
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 5%;
         }
         .hero h1 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Oswald', sans-serif;
             font-size: 5rem;
-            margin: 0;
-            color: var(--neon-gold);
-            text-shadow: var(--glow), 0 0 30px rgba(255,225,0,0.5);
-            animation: pulse 2s infinite alternate;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(212,175,55,0.5);
         }
         .hero p {
-            font-size: 1.8rem;
-            margin: 1rem 0;
-            color: var(--white);
-            text-shadow: 0 0 5px var(--white);
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
         }
         .btn {
-            background: linear-gradient(45deg, var(--gold), var(--neon-gold));
+            background: var(--gradient);
             color: var(--black);
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2.5rem;
             border: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s;
-            box-shadow: var(--glow);
-        }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            transform: rotate(45deg);
-            transition: top 0.5s, left 0.5s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(212,175,55,0.3);
         }
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--neon-gold), 0 0 40px var(--neon-gold);
-        }
-        .btn:hover::before {
-            top: 0;
-            left: 0;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.5);
         }
         section {
-            padding: 6rem 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 8rem 5%;
             position: relative;
         }
         h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-gold);
-            font-size: 3.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
             text-align: center;
-            margin-bottom: 3rem;
-            text-shadow: var(--glow);
+            margin-bottom: 4rem;
+        }
+        .about {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
         }
         .about p {
-            font-size: 1.3rem;
-            line-height: 2;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
-        .music-media {
-            background: var(--dark-gray);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-        .media-grid iframe {
-            border-radius: 15px;
-            box-shadow: var(--glow);
-        }
-        .events {
-            background: transparent;
-        }
-        .event-list {
+        .music-grid, .artist-grid, .merch-grid, .event-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        .event {
-            background: linear-gradient(to bottom, var(--dark-gray), var(--black));
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--glow);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .event:hover {
+        .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .artists {
-            background: var(--dark-gray);
-            border-radius: 20px;
-        }
-        .artist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-        .artist {
-            text-align: center;
-            position: relative;
-        }
-        .artist img {
+        iframe {
             width: 100%;
-            max-width: 250px;
-            border-radius: 50%;
-            box-shadow: var(--glow);
-            transition: transform 0.3s;
-        }
-        .artist:hover img {
-            transform: scale(1.1);
-        }
-        .merch {
-            background: transparent;
-        }
-        .merch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-        .merch-item {
-            text-align: center;
-            background: var(--dark-gray);
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--glow);
-            transition: transform 0.3s;
-        }
-        .merch-item:hover {
-            transform: translateY(-10px);
-        }
-        .merch-item img {
-            width: 100%;
+            border: none;
             border-radius: 10px;
         }
-        .contact form {
+        form {
+            max-width: 600px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            max-width: 700px;
-            margin: 0 auto;
         }
-        .contact input, .contact select, .contact textarea {
-            padding: 1.2rem;
-            background: var(--black);
-            border: 1px solid var(--neon-gold);
+        input, select, textarea {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            padding: 1rem;
             color: var(--white);
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 5px;
         }
-        .social-links {
+        .socials {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
-        .social-links a {
-            color: var(--neon-gold);
+        .socials a {
+            color: var(--gold);
             font-size: 2rem;
             transition: transform 0.3s;
         }
-        .social-links a:hover {
+        .socials a:hover {
             transform: scale(1.2);
-            text-shadow: var(--glow);
-        }
-        .members-only {
-            background: linear-gradient(to right, var(--black), var(--dark-gray));
-            text-align: center;
-            border-radius: 20px;
-            padding: 4rem;
-        }
-        .blog {
-            background: transparent;
-        }
-        .blog-article {
-            margin-bottom: 3rem;
-            background: var(--dark-gray);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--glow);
-        }
-        .email-list {
-            background: var(--dark-gray);
-            text-align: center;
-            border-radius: 20px;
-            padding: 4rem;
-        }
-        .email-list form {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 2rem auto 0;
-        }
-        .email-list input {
-            flex: 1;
-            padding: 1.2rem;
-            background: var(--black);
-            border: 1px solid var(--neon-gold);
-            color: var(--white);
-            border-radius: 10px;
         }
         footer {
-            background: var(--black);
             text-align: center;
             padding: 2rem;
-            border-top: 1px solid var(--neon-gold);
+            background: var(--black);
             font-size: 0.9rem;
         }
-        @keyframes pulse {
-            0% { text-shadow: var(--glow); }
-            100% { text-shadow: 0 0 15px var(--neon-gold), 0 0 30px var(--neon-gold); }
-        }
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s, transform 1s;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .parallax {
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            min-height: 60vh;
-        }
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -367,7 +219,7 @@
                 left: 0;
                 width: 100%;
                 background: rgba(0,0,0,0.9);
-                padding: 1rem 0;
+                padding: 2rem 0;
             }
             nav ul.active {
                 display: flex;
@@ -375,35 +227,22 @@
             .hamburger {
                 display: flex;
             }
-            .hero h1 { font-size: 3.5rem; }
-            h2 { font-size: 2.5rem; }
-        }
-        /* Particle Background */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            pointer-events: none;
+            .hero h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <canvas id="particles"></canvas>
     <nav>
-        <div class="logo">Richh Nick 2030</div>
+        <div class="logo">RICHH NICK</div>
         <ul>
-            <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#music">Music</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#artists">Artists</a></li>
             <li><a href="#merch">Merch</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#members">Members</a></li>
-            <li><a href="#blog">Blog</a></li>
         </ul>
         <div class="hamburger">
             <span></span>
@@ -412,168 +251,167 @@
         </div>
     </nav>
 
-    <section id="hero" class="hero">
+    <section class="hero">
         <video autoplay muted loop>
-            <source src="https://example.com/futuristic-performance.mp4" type="video/mp4">
+            <source src="https://example.com/richh-nick-performance.mp4" type="video/mp4">
         </video>
-        <h1>Richh Nick — Artist, Mogul, Visionary</h1>
-        <p>Where Hustle Meets Legacy in the Future</p>
-        <div class="cta-buttons">
-            <button class="btn" onclick="scrollToSection('#music')">Listen Now</button>
-            <button class="btn" onclick="scrollToSection('#contact')">Book Me</button>
-            <button class="btn" onclick="scrollToSection('#members')">Join the Movement</button>
+        <div class="hero-content">
+            <h1>Artist, Mogul, Visionary</h1>
+            <p>Where Hustle Meets Legacy</p>
+            <a href="#music" class="btn">Listen Now</a>
+            <a href="#contact" class="btn">Book Me</a>
+            <a href="#members" class="btn">Join Movement</a>
         </div>
     </section>
 
-    <section id="about" class="about parallax reveal" style="background-image: url('https://example.com/futuristic-about-bg.jpg');">
+    <section id="about" class="about">
         <h2>About Richh Nick</h2>
-        <p>In 2030, Richh Nick stands as the pinnacle of innovation in music and business. From SXSW triumphs to leading Authentic Empire (@authenticempiremg), his journey is a blueprint for future moguls. Partnered with @richhnick and @richhtalk on Instagram, building empires that transcend time.</p>
+        <p>Richh Nick is a dynamic executive, influencer, serial investor, and manager in the music industry. As a key partner in Authentic Empire Music Group, he has built a reputation for spotting talent and turning visions into empires. With milestones like hosting at SXSW, major collaborations, and leading indie artists to success, Richh Nick embodies grit, innovation, and unstoppable hustle.</p>
+        <p>Follow on Instagram: @richhnick | @richhtalk</p>
     </section>
 
-    <section id="music" class="music-media reveal">
+    <section id="music" class="music">
         <h2>Music & Media</h2>
-        <div class="media-grid">
-            <iframe src="https://open.spotify.com/embed/artist/46njn5hYypZnu8qxe0LXjs" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJe7NZ67v3Y" title="Richh Nick Performance" frameborder="0" allowfullscreen></iframe>
-            <p>Immerse in behind-the-scenes holograms and AI-generated drops exclusively for members.</p>
+        <div class="music-grid">
+            <div class="card">
+                <iframe src="https://open.spotify.com/embed/artist/46njn5hYypZnu8qxe0LXjs" height="380"></iframe>
+            </div>
+            <div class="card">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJe7NZ67v3Y" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="card">
+                <p>Exclusive behind-the-scenes content, studio sessions, and drops.</p>
+            </div>
         </div>
     </section>
 
-    <section id="events" class="events parallax reveal" style="background-image: url('https://example.com/futuristic-events-bg.jpg');">
+    <section id="events" class="events">
         <h2>Upcoming Events</h2>
-        <div class="event-list">
-            <div class="event">
-                <h3>Virtual Yacht Party - Metaverse</h3>
-                <p>Date: September 2030 | VR Access Required.</p>
+        <div class="event-grid">
+            <div class="card">
+                <h3>Yacht Parties & Performances</h3>
+                <p>Stay tuned for dates. RSVP below.</p>
                 <button class="btn">RSVP</button>
             </div>
-            <div class="event">
-                <h3>Authentic Empire Holo-Showcase</h3>
-                <p>Date: October 2030 | Augmented Reality Tickets.</p>
-                <button class="btn">Buy Tickets</button>
+            <div class="card">
+                <h3>Authentic Empire Showcases</h3>
+                <p>Featuring top artists. Tickets soon.</p>
+                <button class="btn">Get Tickets</button>
             </div>
         </div>
     </section>
 
-    <section id="artists" class="artists reveal">
+    <section id="artists" class="artists">
         <h2>Artist Management</h2>
-        <p>Future talents under Authentic Empire: AI-enhanced creatives.</p>
+        <p>Showcasing talent from Authentic Empire Music Group.</p>
         <div class="artist-grid">
-            <div class="artist">
-                <img src="https://example.com/paddx.jpg" alt="Padd X">
+            <div class="card">
                 <h3>Padd X</h3>
-                <p>Neural network infused beats.</p>
+                <p>Raw talent under Authentic Empire.</p>
             </div>
-            <div class="artist">
-                <img src="https://example.com/100kloo.jpg" alt="100K Loo">
+            <div class="card">
                 <h3>100K Loo</h3>
-                <p>Quantum project management, @100k_lurk.</p>
+                <p>Project management deal.</p>
             </div>
-            <div class="artist">
-                <img src="https://example.com/boldboy.jpg" alt="BoldBoy">
+            <div class="card">
                 <h3>BoldBoy</h3>
-                <p>Arkansas cyborg sound, @dge_boldboy.</p>
+                <p>Hottest from Arkansas.</p>
+            </div>
+            <div class="card">
+                <h3>King Fatt</h3>
+                <p>Artist roster highlight.</p>
+            </div>
+            <div class="card">
+                <h3>Foogiano</h3>
+                <p>Breakout star.</p>
+            </div>
+            <div class="card">
+                <h3>Euro Gotit</h3>
+                <p>Hitmaker.</p>
+            </div>
+            <div class="card">
+                <h3>Money Mu</h3>
+                <p>Indie sensation.</p>
             </div>
         </div>
-        <form id="talent-submission">
+        <form>
             <h3>Talent Submission</h3>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="url" placeholder="Demo Link" required>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="url" placeholder="Demo Link">
             <button type="submit" class="btn">Submit</button>
         </form>
     </section>
 
-    <section id="merch" class="merch parallax reveal" style="background-image: url('https://example.com/futuristic-merch-bg.jpg');">
+    <section id="merch" class="merch">
         <h2>Merch & Drops</h2>
-        <p>NFT-integrated merch via Shopify. Members unlock digital twins.</p>
         <div class="merch-grid">
-            <div class="merch-item">
-                <img src="https://example.com/tee.jpg" alt="Richh Nick Tee">
-                <h3>Neo-Tee</h3>
-                <p>$50 + NFT</p>
-                <button class="btn">Buy Now</button>
+            <div class="card">
+                <img src="https://example.com/merch-tee.jpg" alt="Tee" style="width:100%; border-radius:10px;">
+                <h3>Signature Tee</h3>
+                <button class="btn">Shop Now</button>
             </div>
-            <div class="merch-item">
-                <img src="https://example.com/hoodie.jpg" alt="Hoodie">
-                <h3>Hustle Hoodie 2030</h3>
-                <p>$80 + AR Filter</p>
-                <button class="btn">Buy Now</button>
+            <div class="card">
+                <img src="https://example.com/merch-hoodie.jpg" alt="Hoodie" style="width:100%; border-radius:10px;">
+                <h3>Hustle Hoodie</h3>
+                <button class="btn">Shop Now</button>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact reveal">
-        <h2>Contact / Booking</h2>
-        <form id="booking-form">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <select required>
-                <option value="">Select Type</option>
+    <section id="contact" class="contact">
+        <h2>Contact & Booking</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <select>
                 <option>Show Booking</option>
                 <option>Feature</option>
                 <option>Speaking</option>
                 <option>Hosting</option>
             </select>
-            <textarea placeholder="Message" required></textarea>
+            <textarea placeholder="Message"></textarea>
             <button type="submit" class="btn">Send</button>
         </form>
-        <p>Management: richhnick3@gmail.com</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/richhnick/" target="_blank">IG @richhnick</a>
-            <a href="https://www.instagram.com/richhtalk/" target="_blank">IG @richhtalk</a>
-            <a href="https://www.instagram.com/authenticempiremg/" target="_blank">IG @authenticempiremg</a>
-            <a href="https://www.facebook.com/nick.burks.3/" target="_blank">FB</a>
-            <a href="https://x.com/RichhNick" target="_blank">X</a>
-            <a href="https://www.youtube.com/@richhnick" target="_blank">YT</a>
+        <p>Management: richhnick3@gmail.com | 470-416-9447</p>
+        <div class="socials">
+            <a href="https://www.instagram.com/richhnick/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/richhtalk/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/authenticempiremg/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/nick.burks.3/"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/RichhNick"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@richhnick"><i class="fab fa-youtube"></i></a>
         </div>
     </section>
 
-    <section id="members" class="members-only reveal">
+    <section id="members" class="members">
         <h2>Members Only</h2>
-        <p>Access neural unreleased tracks, quantum tickets, and holographic livestreams.</p>
-        <button class="btn" onclick="alert('Sign up for 2030 access!')">Sign Up</button>
+        <p>Exclusive content, early access, private events.</p>
+        <button class="btn">Join Now</button>
     </section>
 
-    <section id="blog" class="blog reveal">
-        <h2>News / Blog</h2>
-        <article class="blog-article">
-            <h3>Empire 2030: AI Drops from Authentic</h3>
-            <p>Futuristic updates, neural grind tips, and quantum industry gems.</p>
-        </article>
-        <article class="blog-article">
-            <h3>Building Legacy in the Metaverse</h3>
-            <p>Motivational holograms from the mogul.</p>
-        </article>
+    <section id="blog" class="blog">
+        <h2>News & Blog</h2>
+        <div class="card">
+            <h3>Latest Drops & Updates</h3>
+            <p>Stay tuned for new music and empire-building tips.</p>
+        </div>
     </section>
 
-    <section id="email" class="email-list reveal">
-        <h2>Join Our Neural Network</h2>
-        <p>Subscribe for AI-curated drops, events, and moves.</p>
-        <form id="subscribe-form">
-            <input type="email" placeholder="Email" required>
+    <section class="newsletter">
+        <h2>Join the List</h2>
+        <form>
+            <input type="email" placeholder="Email">
             <input type="tel" placeholder="Phone for SMS">
             <button type="submit" class="btn">Subscribe</button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2030 Richh Nick & Authentic Empire. All Rights Reserved in the Multiverse.</p>
+        &copy; 2025 Richh Nick & Authentic Empire. All Rights Reserved.
     </footer>
 
     <script>
-        function scrollToSection(id) {
-            document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                alert('Form submitted to the future! (Demo)');
-            });
-        });
-
-        // Hamburger Menu
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
         hamburger.addEventListener('click', () => {
@@ -581,64 +419,18 @@
             hamburger.classList.toggle('active');
         });
 
-        // Reveal on Scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-        reveals.forEach(reveal => observer.observe(reveal));
-
-        // Particles Canvas
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 0);
         });
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = `rgba(255, 209, 0, ${Math.random() * 0.5 + 0.1})`;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        const particles = [];
-        for (let i = 0; i < 200; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-            requestAnimationFrame(animate);
-        }
-        animate();
+        });
     </script>
 </body>
 </html>
