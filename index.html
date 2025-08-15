@@ -3,52 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richh Nick - Official Digital HQ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Richh Nick - Digital HQ 2030</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #C9A24E;
+            --gold: #FFD700;
+            --neon-gold: #FFE100;
             --black: #000000;
             --white: #FFFFFF;
-            --dark-gray: #111111;
+            --dark-gray: #0A0A0A;
+            --glow: 0 0 10px var(--neon-gold), 0 0 20px var(--neon-gold);
         }
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: var(--white);
-            background-color: var(--black);
+            background: radial-gradient(circle at center, var(--dark-gray) 0%, var(--black) 100%);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
+            backdrop-filter: blur(20px) saturate(180%);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
         nav .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            color: var(--gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--neon-gold);
+            text-shadow: var(--glow);
+            cursor: pointer;
         }
         nav ul {
             list-style: none;
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
+            margin: 0;
         }
         nav a {
             color: var(--white);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            position: relative;
             transition: color 0.3s;
         }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-gold);
+            transition: width 0.3s;
+        }
         nav a:hover {
-            color: var(--gold);
+            color: var(--neon-gold);
+            text-shadow: var(--glow);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            transition: 0.3s;
         }
         .hero {
             height: 100vh;
@@ -59,6 +93,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            background: url('https://example.com/futuristic-bg.jpg') center/cover no-repeat;
         }
         .hero video {
             position: absolute;
@@ -67,192 +102,298 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            filter: brightness(0.6);
+            z-index: -2;
         }
-        .hero::after {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
             z-index: -1;
         }
         .hero h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 4rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
             margin: 0;
-            color: var(--gold);
-            animation: fadeIn 2s ease-out;
+            color: var(--neon-gold);
+            text-shadow: var(--glow), 0 0 30px rgba(255,225,0,0.5);
+            animation: pulse 2s infinite alternate;
         }
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 1rem 0;
+            color: var(--white);
+            text-shadow: 0 0 5px var(--white);
         }
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         .btn {
-            background: var(--gold);
+            background: linear-gradient(45deg, var(--gold), var(--neon-gold));
             color: var(--black);
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border: none;
+            font-family: 'Orbitron', sans-serif;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: var(--glow);
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: top 0.5s, left 0.5s;
         }
         .btn:hover {
-            transform: scale(1.05);
-            background: var(--white);
-            color: var(--black);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--neon-gold), 0 0 40px var(--neon-gold);
+        }
+        .btn:hover::before {
+            top: 0;
+            left: 0;
         }
         section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
+            padding: 6rem 3rem;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
         h2 {
-            font-family: 'Oswald', sans-serif;
-            color: var(--gold);
-            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-gold);
+            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            text-shadow: var(--glow);
         }
         .about p {
-            font-size: 1.2rem;
-            line-height: 1.8;
+            font-size: 1.3rem;
+            line-height: 2;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .music-media {
             background: var(--dark-gray);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
         .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        .media-grid iframe {
+            border-radius: 15px;
+            box-shadow: var(--glow);
+        }
+        .events {
+            background: transparent;
+        }
+        .event-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        .events {
-            background: var(--black);
-        }
-        .event-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
         .event {
-            background: var(--dark-gray);
-            padding: 1rem;
-            border-radius: 8px;
+            background: linear-gradient(to bottom, var(--dark-gray), var(--black));
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--glow);
+            transition: transform 0.3s;
+        }
+        .event:hover {
+            transform: translateY(-10px);
         }
         .artists {
             background: var(--dark-gray);
+            border-radius: 20px;
         }
         .artist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
         }
         .artist {
             text-align: center;
+            position: relative;
         }
         .artist img {
             width: 100%;
+            max-width: 250px;
             border-radius: 50%;
-            margin-bottom: 1rem;
+            box-shadow: var(--glow);
+            transition: transform 0.3s;
+        }
+        .artist:hover img {
+            transform: scale(1.1);
         }
         .merch {
-            background: var(--black);
+            background: transparent;
         }
         .merch-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
         }
         .merch-item {
             text-align: center;
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--glow);
+            transition: transform 0.3s;
+        }
+        .merch-item:hover {
+            transform: translateY(-10px);
         }
         .merch-item img {
             width: 100%;
-            margin-bottom: 1rem;
+            border-radius: 10px;
         }
         .contact form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            max-width: 600px;
+            gap: 1.5rem;
+            max-width: 700px;
             margin: 0 auto;
         }
         .contact input, .contact select, .contact textarea {
-            padding: 1rem;
-            background: var(--dark-gray);
-            border: none;
+            padding: 1.2rem;
+            background: var(--black);
+            border: 1px solid var(--neon-gold);
             color: var(--white);
+            border-radius: 10px;
+            font-size: 1rem;
         }
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 3rem;
         }
         .social-links a {
-            color: var(--gold);
-            font-size: 1.5rem;
+            color: var(--neon-gold);
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+        .social-links a:hover {
+            transform: scale(1.2);
+            text-shadow: var(--glow);
         }
         .members-only {
-            background: var(--dark-gray);
+            background: linear-gradient(to right, var(--black), var(--dark-gray));
             text-align: center;
+            border-radius: 20px;
+            padding: 4rem;
         }
         .blog {
-            background: var(--black);
+            background: transparent;
         }
         .blog-article {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--glow);
         }
         .email-list {
             background: var(--dark-gray);
             text-align: center;
+            border-radius: 20px;
+            padding: 4rem;
         }
         .email-list form {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
         }
         .email-list input {
             flex: 1;
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--black);
-            border: none;
+            border: 1px solid var(--neon-gold);
             color: var(--white);
+            border-radius: 10px;
         }
         footer {
             background: var(--black);
             text-align: center;
-            padding: 1rem;
-            border-top: 1px solid var(--gold);
+            padding: 2rem;
+            border-top: 1px solid var(--neon-gold);
+            font-size: 0.9rem;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulse {
+            0% { text-shadow: var(--glow); }
+            100% { text-shadow: 0 0 15px var(--neon-gold), 0 0 30px var(--neon-gold); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         .parallax {
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
+            min-height: 60vh;
         }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            nav ul { flex-direction: column; gap: 1rem; }
+        @media (max-width: 1024px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.9);
+                padding: 1rem 0;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+        }
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
+    <canvas id="particles"></canvas>
     <nav>
-        <div class="logo">Richh Nick</div>
+        <div class="logo">Richh Nick 2030</div>
         <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -264,15 +405,19 @@
             <li><a href="#members">Members</a></li>
             <li><a href="#blog">Blog</a></li>
         </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <section id="hero" class="hero">
-        <!-- Replace with actual performance video URL -->
         <video autoplay muted loop>
-            <source src="https://example.com/performance-video.mp4" type="video/mp4">
+            <source src="https://example.com/futuristic-performance.mp4" type="video/mp4">
         </video>
         <h1>Richh Nick — Artist, Mogul, Visionary</h1>
-        <p>Where Hustle Meets Legacy</p>
+        <p>Where Hustle Meets Legacy in the Future</p>
         <div class="cta-buttons">
             <button class="btn" onclick="scrollToSection('#music')">Listen Now</button>
             <button class="btn" onclick="scrollToSection('#contact')">Book Me</button>
@@ -280,57 +425,55 @@
         </div>
     </section>
 
-    <section id="about" class="about parallax" style="background-image: url('https://example.com/about-bg.jpg');">
+    <section id="about" class="about parallax reveal" style="background-image: url('https://example.com/futuristic-about-bg.jpg');">
         <h2>About Richh Nick</h2>
-        <p>From the streets to the boardroom, Richh Nick embodies grit, vision, and unstoppable hustle. As an artist, executive at Authentic Empire Music Group, and partner in the label, he's hosted at SXSW, landed major collaborations, headlined massive shows, and built a legacy inspiring the next wave of creators. Partnering with Authentic Empire (@authenticempiremg), Richh Nick is pushing boundaries in music, events, and beyond.</p>
+        <p>In 2030, Richh Nick stands as the pinnacle of innovation in music and business. From SXSW triumphs to leading Authentic Empire (@authenticempiremg), his journey is a blueprint for future moguls. Partnered with @richhnick and @richhtalk on Instagram, building empires that transcend time.</p>
     </section>
 
-    <section id="music" class="music-media">
+    <section id="music" class="music-media reveal">
         <h2>Music & Media</h2>
         <div class="media-grid">
             <iframe src="https://open.spotify.com/embed/artist/46njn5hYypZnu8qxe0LXjs" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/sJe7NZ67v3Y" title="Richh Nick Performance" frameborder="0" allowfullscreen></iframe>
-            <p>Behind-the-scenes studio sessions, rehearsals, and exclusive drops available in Members Only.</p>
+            <p>Immerse in behind-the-scenes holograms and AI-generated drops exclusively for members.</p>
         </div>
     </section>
 
-    <section id="events" class="events parallax" style="background-image: url('https://example.com/events-bg.jpg');">
+    <section id="events" class="events parallax reveal" style="background-image: url('https://example.com/futuristic-events-bg.jpg');">
         <h2>Upcoming Events</h2>
         <div class="event-list">
             <div class="event">
-                <h3>Yacht Party - Tampa, FL</h3>
-                <p>Date: September 2025 | RSVP for exclusive access.</p>
+                <h3>Virtual Yacht Party - Metaverse</h3>
+                <p>Date: September 2030 | VR Access Required.</p>
                 <button class="btn">RSVP</button>
             </div>
             <div class="event">
-                <h3>Authentic Empire Showcase - Atlanta, GA</h3>
-                <p>Date: October 2025 | Tickets available soon.</p>
+                <h3>Authentic Empire Holo-Showcase</h3>
+                <p>Date: October 2030 | Augmented Reality Tickets.</p>
                 <button class="btn">Buy Tickets</button>
             </div>
-            <!-- Add more based on real events -->
         </div>
     </section>
 
-    <section id="artists" class="artists">
+    <section id="artists" class="artists reveal">
         <h2>Artist Management</h2>
-        <p>Showcasing talent under Authentic Empire: Partners in building empires.</p>
+        <p>Future talents under Authentic Empire: AI-enhanced creatives.</p>
         <div class="artist-grid">
             <div class="artist">
                 <img src="https://example.com/paddx.jpg" alt="Padd X">
                 <h3>Padd X</h3>
-                <p>Up-and-coming star with raw energy.</p>
+                <p>Neural network infused beats.</p>
             </div>
             <div class="artist">
                 <img src="https://example.com/100kloo.jpg" alt="100K Loo">
                 <h3>100K Loo</h3>
-                <p>Project management deal, follow @100k_lurk.</p>
+                <p>Quantum project management, @100k_lurk.</p>
             </div>
             <div class="artist">
                 <img src="https://example.com/boldboy.jpg" alt="BoldBoy">
                 <h3>BoldBoy</h3>
-                <p>Hottest new artist from Arkansas, @dge_boldboy.</p>
+                <p>Arkansas cyborg sound, @dge_boldboy.</p>
             </div>
-            <!-- Add more from Authentic Empire roster: King Fatt, etc. -->
         </div>
         <form id="talent-submission">
             <h3>Talent Submission</h3>
@@ -341,27 +484,26 @@
         </form>
     </section>
 
-    <section id="merch" class="merch parallax" style="background-image: url('https://example.com/merch-bg.jpg');">
+    <section id="merch" class="merch parallax reveal" style="background-image: url('https://example.com/futuristic-merch-bg.jpg');">
         <h2>Merch & Drops</h2>
-        <p>Exclusive merch powered by Shopify. Members get early access.</p>
+        <p>NFT-integrated merch via Shopify. Members unlock digital twins.</p>
         <div class="merch-grid">
             <div class="merch-item">
                 <img src="https://example.com/tee.jpg" alt="Richh Nick Tee">
-                <h3>Signature Tee</h3>
-                <p>$30</p>
+                <h3>Neo-Tee</h3>
+                <p>$50 + NFT</p>
                 <button class="btn">Buy Now</button>
             </div>
             <div class="merch-item">
                 <img src="https://example.com/hoodie.jpg" alt="Hoodie">
-                <h3>Hustle Hoodie</h3>
-                <p>$50</p>
+                <h3>Hustle Hoodie 2030</h3>
+                <p>$80 + AR Filter</p>
                 <button class="btn">Buy Now</button>
             </div>
-            <!-- Add more -->
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact reveal">
         <h2>Contact / Booking</h2>
         <form id="booking-form">
             <input type="text" placeholder="Name" required>
@@ -378,36 +520,36 @@
         </form>
         <p>Management: richhnick3@gmail.com</p>
         <div class="social-links">
-            <a href="https://www.instagram.com/richhnick/" target="_blank">Instagram @richhnick</a>
-            <a href="https://www.instagram.com/richhtalk/" target="_blank">Instagram @richhtalk</a>
-            <a href="https://www.instagram.com/authenticempiremg/" target="_blank">Instagram @authenticempiremg</a>
-            <a href="https://www.facebook.com/nick.burks.3/" target="_blank">Facebook</a>
-            <a href="https://x.com/RichhNick" target="_blank">X @RichhNick</a>
-            <a href="https://www.youtube.com/@richhnick" target="_blank">YouTube</a>
+            <a href="https://www.instagram.com/richhnick/" target="_blank">IG @richhnick</a>
+            <a href="https://www.instagram.com/richhtalk/" target="_blank">IG @richhtalk</a>
+            <a href="https://www.instagram.com/authenticempiremg/" target="_blank">IG @authenticempiremg</a>
+            <a href="https://www.facebook.com/nick.burks.3/" target="_blank">FB</a>
+            <a href="https://x.com/RichhNick" target="_blank">X</a>
+            <a href="https://www.youtube.com/@richhnick" target="_blank">YT</a>
         </div>
     </section>
 
-    <section id="members" class="members-only">
+    <section id="members" class="members-only reveal">
         <h2>Members Only</h2>
-        <p>Unlock exclusive unreleased music, early tickets, private livestreams, and more.</p>
-        <button class="btn" onclick="alert('Sign up coming soon!')">Sign Up</button>
+        <p>Access neural unreleased tracks, quantum tickets, and holographic livestreams.</p>
+        <button class="btn" onclick="alert('Sign up for 2030 access!')">Sign Up</button>
     </section>
 
-    <section id="blog" class="blog">
+    <section id="blog" class="blog reveal">
         <h2>News / Blog</h2>
         <article class="blog-article">
-            <h3>Empire Rising: New Drops from Authentic Empire</h3>
-            <p>Updates on latest releases, grind tips, and industry insights from Richh Nick.</p>
+            <h3>Empire 2030: AI Drops from Authentic</h3>
+            <p>Futuristic updates, neural grind tips, and quantum industry gems.</p>
         </article>
         <article class="blog-article">
-            <h3>How to Build Your Legacy in Music</h3>
-            <p>Motivational advice from the mogul himself.</p>
+            <h3>Building Legacy in the Metaverse</h3>
+            <p>Motivational holograms from the mogul.</p>
         </article>
     </section>
 
-    <section id="email" class="email-list">
-        <h2>Join Our Email/SMS List</h2>
-        <p>Stay updated on drops, events, and exclusive moves.</p>
+    <section id="email" class="email-list reveal">
+        <h2>Join Our Neural Network</h2>
+        <p>Subscribe for AI-curated drops, events, and moves.</p>
         <form id="subscribe-form">
             <input type="email" placeholder="Email" required>
             <input type="tel" placeholder="Phone for SMS">
@@ -416,7 +558,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Richh Nick & Authentic Empire. All Rights Reserved.</p>
+        <p>&copy; 2030 Richh Nick & Authentic Empire. All Rights Reserved in the Multiverse.</p>
     </footer>
 
     <script>
@@ -427,9 +569,76 @@
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', e => {
                 e.preventDefault();
-                alert('Form submitted! (Demo)');
+                alert('Form submitted to the future! (Demo)');
             });
         });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Reveal on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(reveal => observer.observe(reveal));
+
+        // Particles Canvas
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = `rgba(255, 209, 0, ${Math.random() * 0.5 + 0.1})`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 200; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
